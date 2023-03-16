@@ -1,6 +1,8 @@
 name: Java CI with Gradle for NCR test.   # 1. 이름 변경 
 
 on:
+  push:
+    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
