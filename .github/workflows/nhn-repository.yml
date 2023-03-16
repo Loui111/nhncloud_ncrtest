@@ -1,8 +1,6 @@
 name: Java CI with Gradle for NCR test.   # 1. 이름 변경 
 
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
@@ -30,10 +28,6 @@ jobs:
       uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
       with:
         arguments: build
-
-    - name: Copy jar file 
-      run: mv ./build/libs/ncrtest-0.0.1-SNAPSHOT.jar ./
-      shell: bash
 
     - name: Build Docker file
       run: docker build -t $PROJECT_NAME-$GITHUB_SHA .
