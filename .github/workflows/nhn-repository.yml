@@ -16,18 +16,7 @@ env: # 새로 추가한 부분
   NHN_USER_ACCESS_KEY: CQBbNIZmQNrLx5iKXJZq
   NHN_SECRET_KEY: c65CEx6EmuSyk4x4
 
-jobs:
-  login:
-    runs-on: ubuntu-latest
-    steps:
-      -
-        name: Login to NHN Cloud
-        uses: docker/login-action@v2
-        with:
-          registry: 127ff7ca-kr1-registry.container.nhncloud.com/ncr_gitaction_test
-          username: CQBbNIZmQNrLx5iKXJZq
-          password: c65CEx6EmuSyk4x4
-          
+jobs:     
   build:
     runs-on: ubuntu-latest
 
@@ -61,6 +50,16 @@ jobs:
         run: docker tag ncrtest-$GITHUB_SHA:latest 127ff7ca-kr1-registry.container.nhncloud.com/ncr_gitaction_test/$GITHUB_SHA:latest
         shell: bash
         
+      - name: Login to NHN Cloud
+        uses: docker/login-action@v2
+        with:
+          registry: 127ff7ca-kr1-registry.container.nhncloud.com/ncr_gitaction_test
+          username: CQBbNIZmQNrLx5iKXJZq
+          password: c65CEx6EmuSyk4x4
+
       - name: Upload to NCR
         run: docker push 127ff7ca-kr1-registry.container.nhncloud.com/ncr_gitaction_test/$GITHUB_SHA:latest
         shell: bash
+        
+        
+
