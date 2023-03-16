@@ -57,6 +57,10 @@ jobs:
         run: docker build -t ncrtest-$GITHUB_SHA .
         shell: bash
         
-      - name: Upload to NCR
+      - name: Tagging NCR
         run: docker tag ncrtest-$GITHUB_SHA:latest 127ff7ca-kr1-registry.container.nhncloud.com/ncr_gitaction_test/$GITHUB_SHA:latest
+        shell: bash
+        
+      - name: Upload to NCR
+        run: docker push 127ff7ca-kr1-registry.container.nhncloud.com/ncr_gitaction_test/$GITHUB_SHA:latest
         shell: bash
