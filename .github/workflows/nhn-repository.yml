@@ -36,11 +36,11 @@ jobs:
       shell: bash
 
     - name: Build Docker file
-      run: docker build -t ncrtest-$GITHUB_SHA .
+      run: docker build -t PROJECT_NAME-$GITHUB_SHA .
       shell: bash
 
     - name: Tagging NCR
-      run: docker tag ncrtest-$GITHUB_SHA:latest 127ff7ca-kr1-registry.container.nhncloud.com/ncr_gitaction_test/$GITHUB_SHA:latest
+      run: docker tag PROJECT_NAME-$GITHUB_SHA:latest 127ff7ca-kr1-registry.container.nhncloud.com/ncr_gitaction_test/PROJECT_NAME-$GITHUB_SHA:latest
       shell: bash
 
     - name: Login to NHN Cloud
@@ -51,7 +51,7 @@ jobs:
         password: c65CEx6EmuSyk4x4
 
     - name: Upload to NCR
-      run: docker push 127ff7ca-kr1-registry.container.nhncloud.com/ncr_gitaction_test/$GITHUB_SHA:latest
+      run: docker push 127ff7ca-kr1-registry.container.nhncloud.com/ncr_gitaction_test/PROJECT_NAME-$GITHUB_SHA:latest
       shell: bash
 
 
