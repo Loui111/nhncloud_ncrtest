@@ -25,3 +25,19 @@ jobs:
     - name: Build Docker file
       run: docker build -t nhncloud_ncrtest-$GITHUB_SHA .
       shell: bash
+
+    - name: Tagging NCR         #Docker image 정보를 변경 (NHN Cloud에 접근하기 위함)
+      run: docker tag nhncloud_ncrtest-$GITHUB_SHA:latest 127ff7ca-kr1-registry.container.nhncloud.com/ncr_gitaction_test/nhncloud_ncrtest-$GITHUB_SHA:latest
+      shell: bash
+
+    - name: Login to NHN Cloud    #NHN Cloud접근을 위한 Authentication 추가.
+      uses: docker/login-action@v2
+      with:
+        registry: 127ff7ca-kr1-registry.container.nhncloud.com/ncr_gitaction_test
+        username: CQBbNIZmQNrLx5iKXJZq
+        password: c65CEx6EmuSyk4x4
+
+    - name: Upload to NCR         #NHN Cloud에 로그인 완료 하고 생성된 docker image를 업로드 
+      run: docker push 127ff7ca-kr1-registry.container.nhncloud.com/ncr_gitaction_test/nhncloud_ncrtest-$GITHUB_SHA:latest
+      shell: bash
+
