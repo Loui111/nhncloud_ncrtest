@@ -1,8 +1,14 @@
 # logging-deploy.yml
-name: Java CI with Gradle for NCR test
+name: credential Test
 
 on:
-  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
 
 env: # 새로 추가한 부분
   PROJECT_NAME: nhncloud_ncrtest
