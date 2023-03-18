@@ -34,13 +34,9 @@ jobs:
       uses: docker/login-action@v2
       with:
         registry: d1900530-kr1-registry.container.nhncloud.com/ncr_gitaction_test
-        username: gkFbliEqCQRgPK4uGarI
-        password: E777CdakUdqZ7Y11
+        username: ${{ secrets.NHN_ACCESS_KEY }}
+        password: ${{ secrets.NHN_SECRET_KEY }}
         
-#        registry: 127ff7ca-kr1-registry.container.nhncloud.com/ncr_gitaction_test
-#        username: CQBbNIZmQNrLx5iKXJZq
-#        password: c65CEx6EmuSyk4x4
-
     - name: Upload to NCR         #NHN Cloud에 로그인 완료 하고 생성된 docker image를 업로드 
       run: docker push d1900530-kr1-registry.container.nhncloud.com/ncr_gitaction_test/nhncloud_ncrtest-$GITHUB_SHA:latest
       shell: bash
